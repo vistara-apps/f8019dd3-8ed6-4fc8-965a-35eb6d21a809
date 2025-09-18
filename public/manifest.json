@@ -1,0 +1,14 @@
+{
+  "name": "CreatorBet",
+  "description": "CreatorBet is a Base Mini App built with Zara.",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "external_url": "https://f8019dd3-8ed6-4fc8-965a-35eb6d21a809.vercel.app",
+  "properties": {
+    "app": {
+      "name": "CreatorBet",
+      "description": "CreatorBet is a Base Mini App built with Zara.",
+      "url": "https://f8019dd3-8ed6-4fc8-965a-35eb6d21a809.vercel.app",
+      "icon": "https://0co.to/images/zara-2.png"
+    }
+  }
+}
