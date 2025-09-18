@@ -1,8 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return clsx(inputs);
 }
 
 export function formatCurrency(amount: number): string {
@@ -24,7 +23,17 @@ export function formatTokens(amount: number): string {
   return amount.toString();
 }
 
-export function calculateTimeRemaining(endTime: Date): string {
+export function calculateDynamicPrice(
+  basePrice: number,
+  engagement: number,
+  demand: number
+): number {
+  const engagementMultiplier = 1 + (engagement / 100);
+  const demandMultiplier = 1 + (demand / 100);
+  return basePrice * engagementMultiplier * demandMultiplier;
+}
+
+export function getTimeRemaining(endTime: Date): string {
   const now = new Date();
   const diff = endTime.getTime() - now.getTime();
   
@@ -37,13 +46,4 @@ export function calculateTimeRemaining(endTime: Date): string {
     return `${hours}h ${minutes}m`;
   }
   return `${minutes}m`;
-}
-
-export function generateMockData() {
-  return {
-    totalEarnings: 67630,
-    activeMarkets: 12,
-    totalParticipants: 1847,
-    engagementRate: 78.5,
-  };
 }

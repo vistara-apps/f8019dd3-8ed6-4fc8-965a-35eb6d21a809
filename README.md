@@ -5,9 +5,9 @@ CreatorBet enables creators to host instant prediction markets tied to their liv
 ## Features
 
 - **Instant Prediction Markets**: Creators can quickly set up prediction markets linked to events within their live streams
-- **Dynamic Pricing & Rewards**: Algorithm-based pricing and tokenized reward system
-- **In-Stream Integration**: Seamless integration into streaming platforms
-- **Creator Dashboard**: Simple interface for creators to manage markets and earnings
+- **Dynamic Pricing & Rewards**: Algorithm-based pricing that adjusts based on real-time engagement and market activity
+- **In-Stream Integration**: Seamless integration into streaming platforms with token-based incentives
+- **Creator Dashboard**: Simple interface for creators to manage their markets and earnings
 
 ## Tech Stack
 
@@ -41,18 +41,17 @@ npm run dev
 ```
 ├── app/                 # Next.js App Router
 ├── components/          # React components
-├── lib/                 # Utilities and types
-├── public/              # Static assets
-└── README.md
+├── lib/                # Utilities and types
+└── public/             # Static assets
 ```
 
 ## Key Components
 
-- **Dashboard**: Main interface showing stats, charts, and active markets
+- **Dashboard**: Main interface showing markets and analytics
 - **MarketCard**: Individual prediction market display
-- **BettingModal**: Interface for placing bets
-- **CreateMarketModal**: Creator interface for setting up new markets
-- **DynamicPricingChart**: Real-time pricing visualization
+- **DynamicPricingCard**: Real-time pricing information
+- **StreamIntegrationFrame**: Market creation interface
+- **CreatorProfileHeader**: Creator information display
 
 ## Environment Variables
 

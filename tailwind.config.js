@@ -15,7 +15,6 @@ module.exports = {
         'surface-light': 'hsl(220, 25%, 22%)',
         'text-primary': 'hsl(0, 0%, 95%)',
         'text-secondary': 'hsl(0, 0%, 70%)',
-        'text-muted': 'hsl(0, 0%, 50%)',
       },
       borderRadius: {
         'sm': '6px',
@@ -31,8 +30,8 @@ module.exports = {
         'card': '0 8px 24px hsla(0, 0%, 0%, 0.12)',
       },
       animation: {
-        'fade-in': 'fadeIn 0.3s ease-out',
-        'slide-up': 'slideUp 0.3s ease-out',
+        'fade-in': 'fadeIn 0.15s cubic-bezier(0.22,1,0.36,1)',
+        'slide-up': 'slideUp 0.25s cubic-bezier(0.22,1,0.36,1)',
       },
       keyframes: {
         fadeIn: {
