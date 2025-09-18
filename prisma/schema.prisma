@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Creator {
+  creatorId        String   @id @default(cuid())
+  platformUsername String
+  platformId       String
+  tokenBalance     Float    @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  markets PredictionMarket[]
+
+  @@map("creators")
+}
+
+model PredictionMarket {
+  marketId        String   @id @default(cuid())
+  creatorId       String
+  title           String
+  outcomeOptions  String   // JSON string of outcome options
+  status          String   @default("active") // active, closed, pending
+  openingTime     DateTime
+  closingTime     DateTime
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Computed fields
+  totalPool       Float    @default(0)
+  participantCount Int     @default(0)
+
+  // Relations
+  creator Creator @relation(fields: [creatorId], references: [creatorId], onDelete: Cascade)
+  bets    MarketBet[]
+
+  @@map("prediction_markets")
+}
+
+model MarketBet {
+  betId         String   @id @default(cuid())
+  marketId      String
+  participantId String
+  chosenOutcome String
+  betAmount     Float
+  payout        Float?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  market      PredictionMarket @relation(fields: [marketId], references: [marketId], onDelete: Cascade)
+  participant Participant      @relation(fields: [participantId], references: [participantId], onDelete: Cascade)
+
+  @@map("market_bets")
+}
+
+model Participant {
+  participantId    String @id @default(cuid())
+  farcasterId      String @unique
+  baseWalletAddress String @unique
+  tokenBalance     Float  @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  // Relations
+  bets MarketBet[]
+
+  @@map("participants")
+}

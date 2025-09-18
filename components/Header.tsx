@@ -1,11 +1,9 @@
 'use client';
 
-import { useMiniKit } from '@coinbase/minikit';
-import { Wallet, User, TrendingUp } from 'lucide-react';
+import { WalletConnect } from './WalletConnect';
+import { TrendingUp } from 'lucide-react';
 
 export function Header() {
-  const { user } = useMiniKit();
-
   return (
     <header className="border-b border-gray-600 bg-surface/50 backdrop-blur-sm sticky top-0 z-50">
       <div className="max-w-[600px] mx-auto px-4 py-4">
@@ -19,17 +17,8 @@ export function Header() {
               <p className="text-xs text-text-muted">Predict & Earn</p>
             </div>
           </div>
-          
-          <div className="flex items-center space-x-3">
-            <div className="flex items-center space-x-2 bg-surface border border-gray-600 rounded-lg px-3 py-2">
-              <Wallet className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium">2,450 CBT</span>
-            </div>
-            
-            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
-              <User className="w-4 h-4 text-white" />
-            </div>
-          </div>
+
+          <WalletConnect />
         </div>
       </div>
     </header>
