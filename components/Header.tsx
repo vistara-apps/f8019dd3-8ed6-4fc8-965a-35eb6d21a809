@@ -1,10 +1,10 @@
 'use client';
 
-import { useMiniKit } from '@coinbase/minikit';
 import { Wallet, User, TrendingUp } from 'lucide-react';
 
 export function Header() {
-  const { user } = useMiniKit();
+  // For now, we'll use a placeholder user object
+  const user = null;
 
   return (
     <header className="border-b border-gray-600 bg-surface/50 backdrop-blur-sm sticky top-0 z-50">
