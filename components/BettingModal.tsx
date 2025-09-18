@@ -17,14 +17,39 @@ export function BettingModal({ market, onClose }: BettingModalProps) {
 
   const handlePlaceBet = async () => {
     if (!selectedOutcome || !betAmount) return;
-    
+
     setIsPlacing(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsPlacing(false);
-    onClose();
+
+    try {
+      const response = await fetch('/api/bets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          marketId: market.marketId,
+          participantId: 'participant1', // In production, get from user session
+          chosenOutcome: selectedOutcome,
+          betAmount: parseInt(betAmount),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert(`Bet placed successfully! You bet ${betAmount} CBT on "${selectedOutcome}"`);
+        onClose();
+        // Refresh the page to show updated market data
+        window.location.reload();
+      } else {
+        alert(data.error || 'Failed to place bet. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error placing bet:', error);
+      alert('Failed to place bet. Please try again.');
+    } finally {
+      setIsPlacing(false);
+    }
   };
 
   const potentialPayout = betAmount ? parseFloat(betAmount) * 2.1 : 0;

@@ -43,3 +43,31 @@ export interface DynamicPricing {
   engagement: number;
   demand: number;
 }
+
+// API Response types
+export interface ApiResponse<T = any> {
+  success: boolean;
+  data?: T;
+  error?: string;
+}
+
+// Frame types for Farcaster integration
+export interface FrameData {
+  version: string;
+  imageUrl: string;
+  button?: {
+    title: string;
+    action: {
+      type: string;
+      name: string;
+      url: string;
+      splashImageUrl: string;
+      splashBackgroundColor: string;
+    };
+  };
+  buttons?: Array<{
+    label: string;
+    action: string;
+    target: string;
+  }>;
+}
