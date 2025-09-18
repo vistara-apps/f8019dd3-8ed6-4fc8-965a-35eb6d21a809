@@ -33,14 +33,39 @@ export function CreateMarketModal({ onClose }: CreateMarketModalProps) {
 
   const handleCreate = async () => {
     if (!title || outcomes.some(o => !o.trim())) return;
-    
+
     setIsCreating(true);
-    
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    setIsCreating(false);
-    onClose();
+
+    try {
+      const response = await fetch('/api/markets', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          title,
+          outcomeOptions: outcomes.filter(o => o.trim()),
+          duration: parseInt(duration),
+          creatorId: 'creator1', // In production, get from user session
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert('Market created successfully!');
+        onClose();
+        // Refresh the page to show the new market
+        window.location.reload();
+      } else {
+        alert(data.error || 'Failed to create market. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error creating market:', error);
+      alert('Failed to create market. Please try again.');
+    } finally {
+      setIsCreating(false);
+    }
   };
 
   return (

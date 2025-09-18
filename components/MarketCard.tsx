@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Clock, Users, TrendingUp, CheckCircle } from 'lucide-react';
 import { PredictionMarket } from '@/lib/types';
-import { formatCurrency, getTimeRemaining } from '@/lib/utils';
+import { formatTokens, getTimeRemaining, calculateOdds } from '@/lib/utils';
 import { BettingButton } from './BettingButton';
 
 interface MarketCardProps {
@@ -15,6 +15,7 @@ export function MarketCard({ market, variant }: MarketCardProps) {
   const [selectedOutcome, setSelectedOutcome] = useState<string | null>(null);
   const timeRemaining = getTimeRemaining(market.closingTime);
   const isActive = variant === 'active';
+  const odds = calculateOdds(market.marketId);
 
   return (
     <div className={`card ${isActive ? 'border-primary/30' : 'border-gray-700'} animate-fade-in`}>
@@ -32,7 +33,7 @@ export function MarketCard({ market, variant }: MarketCardProps) {
             </div>
             <div className="flex items-center space-x-1">
               <TrendingUp className="w-4 h-4" />
-              <span>{formatCurrency(market.totalPool)}</span>
+              <span>{formatTokens(market.totalPool)}</span>
             </div>
           </div>
         </div>
@@ -59,10 +60,10 @@ export function MarketCard({ market, variant }: MarketCardProps) {
             
             <div className="text-right">
               <p className="text-sm font-medium text-text-primary">
-                {(Math.random() * 3 + 1).toFixed(2)}x
+                {(1 / (odds[outcome] || 0.1)).toFixed(2)}x
               </p>
               <p className="text-xs text-text-secondary">
-                {Math.floor(Math.random() * 40 + 10)}%
+                {Math.round((odds[outcome] || 0.1) * 100)}%
               </p>
             </div>
           </div>
