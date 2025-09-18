@@ -10,7 +10,7 @@
     "subtitle": "Built with Zara",
     "description": "CreatorBet is a Base Mini App built with Zara.",
     "iconUrl": "https://0co.to/images/zara-2.png",
-    "homeUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-0t8j.vercel.app",
+    "homeUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-8851.vercel.app",
     "splashImageUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-0t8j.vercel.app/splash.png",
     "splashBackgroundColor": "#000000",
     "heroImageUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-0t8j.vercel.app/image.png",
@@ -25,6 +25,6 @@
       "miniapp",
       "onchainkit"
     ],
-    "webhookUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-0t8j.vercel.app/api/webhook"
+    "webhookUrl": "https://f8019dd38ed64fc8965a35eb6d21a809-8851.vercel.app/api/webhook"
   }
 }
